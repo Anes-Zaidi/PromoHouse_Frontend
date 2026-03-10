@@ -1,18 +1,23 @@
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Badge } from "../components/ui/badge"
+import { Button } from "../components/ui/button"
 import { ArrowRight, Store, Check, Star } from "lucide-react"
-import Image from "next/image"
+import { motion } from "motion/react"
 
-export default function Hero() {
+export default function Hero({ onAction }: { onAction: (msg: string) => void }) {
   return (
     <div className="relative w-full bg-brand-dark overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 xl:px-16 pb-48 pt-20">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20 relative z-10">
           
           {/* Left Content */}
-          <div className="flex-1 text-white relative z-10 w-full">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 text-white relative z-10 w-full"
+          >
             <div className="inline-flex items-center gap-2 bg-white/10 rounded-full pr-4 p-1.5 mb-8 border border-white/20">
-              <Badge className="bg-brand-orange hover:bg-brand-orange-hover text-white px-3 py-1 text-[10px] rounded-full uppercase border-none">NEW</Badge>
+              <Badge className="bg-brand-orange hover:bg-brand-orange/90 text-white px-3 py-1 text-[10px] rounded-full uppercase border-none">NEW</Badge>
               <span className="text-xs font-semibold mr-2">Save Food, Save Money, Save Planet</span>
             </div>
             
@@ -26,10 +31,17 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 mb-16">
-              <Button className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-hover text-white rounded-full px-8 py-6 text-base font-bold flex items-center justify-center gap-2 border-none">
+              <Button 
+                className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange/90 text-white rounded-full px-8 py-6 text-base font-bold flex items-center justify-center gap-2 border-none"
+                onClick={() => onAction("Loading deals near you...")}
+              >
                 Start Shopping <ArrowRight size={20} />
               </Button>
-              <Button variant="outline" className="w-full sm:w-auto border-white/30 hover:bg-white/10 hover:text-white bg-white/5 text-white rounded-full px-8 py-6 text-base font-bold flex items-center justify-center gap-2">
+              <Button 
+                variant="outline" 
+                className="w-full sm:w-auto border-white/30 hover:bg-white/10 hover:text-white bg-white/5 text-white rounded-full px-8 py-6 text-base font-bold flex items-center justify-center gap-2"
+                onClick={() => onAction("Redirecting to Dealer Registration...")}
+              >
                 <Store size={20} />
                 Become a Dealer
               </Button>
@@ -51,16 +63,30 @@ export default function Hero() {
                 <p className="text-white/70 text-xs md:text-sm font-medium">Food Saved</p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Content / Image Area */}
-          <div className="flex-1 relative w-full mt-10 lg:mt-0 flex justify-center lg:justify-end z-10">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 relative w-full mt-10 lg:mt-0 flex justify-center lg:justify-end z-10"
+          >
             <div className="relative w-full max-w-md aspect-4/5 rounded-[32px] overflow-hidden shadow-2xl border-4 border-brand-border">
-
+              <img 
+                src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800" 
+                alt="Fresh Produce" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
             </div>
 
             {/* Floating Card: Savings */}
-            <div className="absolute top-8 right-[-10px] sm:right-0 lg:-right-8 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-4 animate-in fade-in slide-in-from-bottom flex-row">
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-8 right-[-10px] sm:right-0 lg:-right-8 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-4 flex-row"
+            >
               <div className="bg-brand-success-bg text-brand-success-text h-10 w-10 rounded-full flex items-center justify-center">
                 <Check size={24} />
               </div>
@@ -68,12 +94,16 @@ export default function Hero() {
                 <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider">Total Savings</p>
                 <p className="text-zinc-900 text-lg font-extrabold">$124.50</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Floating Card: Review */}
-            <div className="absolute bottom-12 left-[-10px] sm:left-4 lg:-left-12 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-4 max-w-[240px] animate-in fade-in slide-in-from-bottom delay-150">
+            <motion.div 
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute bottom-12 left-[-10px] sm:left-4 lg:-left-12 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-4 max-w-[240px]"
+            >
               <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-brand-primary bg-zinc-200 shrink-0">
-
+                <img src="https://www.challenges.fr/_ipx/f_webp&enlarge_true&fit_cover&s_1360x840/cha/static/2025-11/43153.HR.jpg%3FVersionId=r50Zwk1n2F9iJzgHEPs46ZFkS_hEwJiO" className="w-full h-full object-cover" alt="User" referrerPolicy="no-referrer" />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center text-brand-warning gap-0.5">
@@ -83,9 +113,9 @@ export default function Hero() {
                 </div>
                 <p className="text-zinc-800 text-xs font-semibold mt-1">&quot;Great quality &amp; prices!&quot;</p>
               </div>
-            </div>
+            </motion.div>
             
-          </div>
+          </motion.div>
         </div>
       </div>
 
