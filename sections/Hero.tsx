@@ -60,7 +60,7 @@ export default function Hero() {
             </div>
 
             {/* Floating Card: Savings */}
-            <div className="absolute top-8 right-[-10px] sm:right-0 lg:-right-8 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-4 animate-in fade-in slide-in-from-bottom flex-row">
+            <div className="absolute top-8 -right-2.5 sm:right-0 lg:-right-8 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-4 animate-in fade-in slide-in-from-bottom flex-row">
               <div className="bg-brand-success-bg text-brand-success-text h-10 w-10 rounded-full flex items-center justify-center">
                 <Check size={24} />
               </div>
@@ -71,7 +71,7 @@ export default function Hero() {
             </div>
 
             {/* Floating Card: Review */}
-            <div className="absolute bottom-12 left-[-10px] sm:left-4 lg:-left-12 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-4 max-w-[240px] animate-in fade-in slide-in-from-bottom delay-150">
+            <div className="absolute bottom-12 -left-2.5 sm:left-4 lg:-left-12 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-4 max-w-60 animate-in fade-in slide-in-from-bottom delay-150">
               <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-brand-primary bg-zinc-200 shrink-0">
 
               </div>
@@ -91,7 +91,7 @@ export default function Hero() {
 
       {/* Bottom Wave Curve */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0">
-        <svg className="block w-full h-[60px] md:h-[120px] lg:h-[180px]" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <svg className="block w-full h-15 md:h-30 lg:h-45" viewBox="0 0 1440 320" preserveAspectRatio="none">
           <path fill="#ffffff" fillOpacity="1" d="M0,256L80,229.3C160,203,320,149,480,144C640,139,800,181,960,192C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
         </svg>
       </div>

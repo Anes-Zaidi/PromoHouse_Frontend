@@ -1,5 +1,11 @@
 import Hero from "@/sections/Hero";
 import Navbar from "@/components/Navbar";
+import CartSection from "@/sections/CartSection";
+import DealerSection from "@/sections/DealerSection";
+import Banner from "@/components/Banner";
+import ExploreDeals from "@/sections/ExploreDeals";
+import CommentSection from "@/sections/CommentSection" ;
+import Footer from "@/components/Footer"
 
 export default function Home() {
   return (
@@ -24,6 +30,13 @@ export default function Home() {
             </a>
           </div>
         </div>
+        <CartSection/>
+        <DealerSection/>
+        <Banner/>
+        <ExploreDeals/>
+        <CommentSection/>
+        <Footer/>
+
       </main>
     </div>
   );
