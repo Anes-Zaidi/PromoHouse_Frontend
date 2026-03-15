@@ -9,7 +9,7 @@ import Footer from "@/components/Footer"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white font-sans text-zinc-900 w-full overflow-x-hidden">
+    <div className="min-h-screen bg-background font-sans text-foreground w-full overflow-x-hidden">
       <Navbar />
       <main className="w-full flex-col items-center justify-between">
         <Hero />
@@ -23,7 +23,7 @@ export default function Home() {
                   <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" fill="currentColor"/>
                 </svg>
               </h2>
-              <p className="text-zinc-500 mt-2">Discover surplus food deals in your local area and save big.</p>
+              <p className="text-muted-foreground mt-2">Discover surplus food deals in your local area and save big.</p>
             </div>
             <a href="#" className="text-brand-primary font-bold flex items-center gap-1 hover:underline">
               View all deals →

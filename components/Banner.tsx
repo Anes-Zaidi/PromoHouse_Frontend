@@ -13,7 +13,7 @@ const Banner = () => {
                 <h2 className='text-3xl md:text-5xl font-bold leading-tight mb-6'>
                     Make your shopping easier with our mobile app
                 </h2>
-                <p className='text-orange-50 text-sm md:text-lg mb-10 opacity-90'>
+                <p className='text-white/80 text-sm md:text-lg mb-10 opacity-90'>
                     Get notifications for new deals near you instantly. Available on iOS and Android.
                 </p>
 
