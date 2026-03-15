@@ -33,7 +33,7 @@ const CommentSection = () => {
   return (
     <section className='bg-white py-16 px-4'>
       <div className='max-w-7xl mx-auto'>
-        <h2 className='text-3xl md:text-4xl font-extrabold text-gray-900 text-center mb-16'>What Our Customers Say</h2>
+        <h2 className='text-3xl md:text-4xl font-extrabold text-foreground text-center mb-16'>What Our Customers Say</h2>
         <div className='flex flex-wrap justify-center gap-8'>
           {commentData.map((comment, index)=>(
             <CommentCart key={index} {...comment}/>

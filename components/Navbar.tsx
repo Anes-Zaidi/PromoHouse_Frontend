@@ -9,7 +9,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-zinc-100 bg-white font-sans shadow-sm">
       
       {/* Top Banner */}
-      <div className="bg-[#104d30] text-white py-2 px-4 sm:px-8 xl:px-16 text-xs flex flex-col sm:flex-row items-center justify-between">
+      <div className="bg-brand-dark text-white py-2 px-4 sm:px-8 xl:px-16 text-xs flex flex-col sm:flex-row items-center justify-between">
         <p className="font-normal opacity-90">FREE delivery & 40% Discount for your first surplus order!</p>
         <div className="flex items-center gap-6 mt-2 sm:mt-0">
           <div className="flex items-center gap-1.5 opacity-90">
@@ -37,7 +37,7 @@ export default function Navbar() {
               priority
             />
           </div>
-          <span className="font-bold text-2xl text-[#104d30]">PromoHouse</span>
+          <span className="font-bold text-2xl text-brand-dark">PromoHouse</span>
         </div>
 
         {/* Barre de Recherche  */}
@@ -48,7 +48,7 @@ export default function Navbar() {
             className="w-full rounded-full bg-zinc-50 border-zinc-200 pl-6 py-6 text-sm pr-14 focus-visible:ring-emerald-500" 
           />
           {/* Bouton loupe vert */}
-          <Button size="icon" className="absolute right-1.5 top-1.5 rounded-full bg-[#10b981] hover:bg-[#059669] text-white h-9 w-9">
+          <Button size="icon" className="absolute right-1.5 top-1.5 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white h-9 w-9">
             <Search size={18} />
           </Button>
         </div>
@@ -73,7 +73,7 @@ export default function Navbar() {
           </div>
 
           {/* Bouton d'inscription vert */}
-          <Button className="rounded-full bg-[#10b981] hover:bg-[#059669] text-white px-8 py-6 font-bold text-base shadow-sm">
+          <Button className="rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white px-8 py-6 font-bold text-base shadow-sm">
             Sign Up
           </Button>
         </div>
