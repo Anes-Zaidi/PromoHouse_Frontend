@@ -4,21 +4,52 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Link from "next/link";
+import { supabase } from "@/lib/supabase";
+import { logger } from "@/lib/logger";
 
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [activeField, setActiveField] = useState<string | null>("firstName");
 
+  const handleGoogleSignIn = async () => {
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: typeof window !== "undefined" ? `${window.location.origin}` : undefined,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      logger.error("Error signing in with Google:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white flex flex-col lg:flex-row font-sans text-[#141414]">
       {/* Left Panel (Desktop) / Top Panel (Mobile) */}
       <div className="relative bg-[#1E633E] lg:w-[45%] p-8 lg:p-16 flex flex-col items-center lg:items-start justify-center overflow-hidden">
+        
+        {/* Back to Home Link */}
+        <div className="absolute top-6 left-6 z-20">
+          <Link href="/">
+            <button className="text-white hover:bg-white/10 flex items-center gap-2 rounded-full px-4 py-2 opacity-80 hover:opacity-100 transition-all">
+              <ArrowLeft size={18} />
+              <span className="font-semibold text-sm">Back to Home</span>
+            </button>
+          </Link>
+        </div>
+
         {/* Logo */}
-        <div className="flex items-center gap-3 mb-12 lg:mb-24 z-10">
+        <div className="flex items-center gap-3 mb-12 lg:mb-24 z-10 mt-8 lg:mt-0">
           <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
             <svg
               viewBox="0 0 24 24"
@@ -59,7 +90,10 @@ export default function SignUpPage() {
           <p className="text-white/80 text-sm font-medium mb-6">
             Join PromoHouse By
           </p>
-          <button className="w-full bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-6 rounded-2xl flex items-center justify-center gap-3 shadow-md transition-all active:scale-95">
+          <button 
+            onClick={handleGoogleSignIn}
+            className="w-full bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-6 rounded-2xl flex items-center justify-center gap-3 shadow-md transition-all active:scale-95"
+          >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -245,12 +279,12 @@ export default function SignUpPage() {
             {/* Login Link */}
             <p className="text-center text-sm font-medium text-gray-600 mt-6">
               Already have an account?{" "}
-              <a
-                href="#"
+              <Link
+                href="/login"
                 className="text-[#F27D26] hover:underline font-bold transition-all"
               >
                 Log in
-              </a>
+              </Link>
             </p>
           </form>
         </div>
@@ -258,4 +292,3 @@ export default function SignUpPage() {
     </div>
   );
 }
-
