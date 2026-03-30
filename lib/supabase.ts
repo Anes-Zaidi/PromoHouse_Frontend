@@ -1,11 +1,16 @@
 import { createClient } from '@supabase/supabase-js';
-import { logger } from './logger';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+// On vérifie AVANT d'initialiser le client
 if (!supabaseUrl || !supabaseAnonKey) {
-  logger.warn('Supabase URL or Anon Key is missing. Check your environment variables.');
+  console.error("ERREUR: Variables Supabase manquantes dans .env.local");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// L'initialisation ne se fera que si les valeurs existent, 
+// sinon l'erreur de la console sera plus explicite que le crash actuel.
+export const supabase = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co', 
+  supabaseAnonKey || 'placeholder-key'
+);
