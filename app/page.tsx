@@ -10,9 +10,9 @@ import Footer from "@/components/Footer"
 export default function Home() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground w-full overflow-x-hidden">
-      <Navbar />
+      <Navbar/>
       <main className="w-full flex-col items-center justify-between">
-        <Hero />
+        <Hero/>
         {/* Placeholder for the rest of the content (Deals near California etc.) */}
         <div className="max-w-7xl mx-auto px-4 sm:px-8 xl:px-16 py-16">
           <div className="flex items-center justify-between mb-8">
