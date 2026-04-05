@@ -25,6 +25,8 @@ g_creds.json
 # production
 /build
 
+/types
+
 # misc
 .DS_Store
 *.pem

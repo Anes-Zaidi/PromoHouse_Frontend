@@ -214,6 +214,73 @@ export type Database = {
           },
         ]
       }
+      profiles: {
+        Row: {
+          address: string | null
+          avatar_url: string | null
+          commune_id: number | null
+          country_id: number | null
+          created_at: string
+          first_name: string | null
+          id: string
+          is_completed: boolean
+          last_name: string | null
+          phone_verified: boolean
+          updated_at: string
+          wilaya_id: number | null
+        }
+        Insert: {
+          address?: string | null
+          avatar_url?: string | null
+          commune_id?: number | null
+          country_id?: number | null
+          created_at?: string
+          first_name?: string | null
+          id: string
+          is_completed?: boolean
+          last_name?: string | null
+          phone_verified?: boolean
+          updated_at?: string
+          wilaya_id?: number | null
+        }
+        Update: {
+          address?: string | null
+          avatar_url?: string | null
+          commune_id?: number | null
+          country_id?: number | null
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          is_completed?: boolean
+          last_name?: string | null
+          phone_verified?: boolean
+          updated_at?: string
+          wilaya_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_commune_id_fkey"
+            columns: ["commune_id"]
+            isOneToOne: false
+            referencedRelation: "communes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_wilaya_id_fkey"
+            columns: ["wilaya_id"]
+            isOneToOne: false
+            referencedRelation: "wilayas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       wilayas: {
         Row: {
           code: string | null
