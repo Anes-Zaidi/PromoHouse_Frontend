@@ -10,6 +10,11 @@
 !.yarn/releases
 !.yarn/versions
 
+g_creds.json
+
+# sql files
+*.sql
+
 # testing
 /coverage
 
@@ -19,6 +24,8 @@
 
 # production
 /build
+
+/types
 
 # misc
 .DS_Store
