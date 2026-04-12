@@ -32,7 +32,7 @@ export default function Home() {
         </div>
         <CartSection/>
         <DealerSection/>
-        <Banner/>
+        {/* <Banner/> */}
         <ExploreDeals/>
         <CommentSection/>
         <Footer/>

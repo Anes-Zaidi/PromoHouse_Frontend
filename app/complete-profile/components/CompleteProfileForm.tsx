@@ -19,7 +19,8 @@ export default function CompleteProfileForm() {
     country_id: "",
     wilaya_id: "",
     commune_id: "",
-    address: ""
+    address: "",
+    account_type: "" as "Buyer" | "Merchant" | ""
   });
   
   const [isLoading, setIsLoading] = useState(false);
@@ -51,10 +52,19 @@ export default function CompleteProfileForm() {
     });
   };
 
+  const handleAccountTypeSelect = (type: "Buyer" | "Merchant") => {
+    setFormData(prev => ({ ...prev, account_type: type }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
     
+    if (!formData.account_type) {
+      setErrorMsg("Please select an account type.");
+      return;
+    }
+
     if (!formData.country_id || !formData.wilaya_id || !formData.commune_id || !formData.address.trim()) {
       setErrorMsg("Please fill out all address fields.");
       return;
@@ -68,6 +78,7 @@ export default function CompleteProfileForm() {
       const { error } = await supabase
         .from('profiles')
         .update({
+          account_type: formData.account_type as any,
           country_id: parseInt(formData.country_id),
           wilaya_id: parseInt(formData.wilaya_id),
           commune_id: parseInt(formData.commune_id),
@@ -97,6 +108,52 @@ export default function CompleteProfileForm() {
           {errorMsg}
         </div>
       )}
+
+      {/* Account Type Selection */}
+      <div className="space-y-3">
+        <label className="block text-sm font-semibold text-gray-700">I want to use PromoHouse as a...</label>
+        <div className="grid grid-cols-2 gap-4">
+          <button
+            type="button"
+            onClick={() => handleAccountTypeSelect("Buyer")}
+            className={`p-4 rounded-2xl border-2 transition-all flex flex-col items-center gap-2 group ${
+              formData.account_type === "Buyer" 
+                ? "border-[#1E633E] bg-[#1E633E]/5 text-[#1E633E]" 
+                : "border-gray-100 bg-gray-50 text-gray-400 hover:border-gray-200"
+            }`}
+          >
+            <div className={`p-2 rounded-xl transition-all ${
+              formData.account_type === "Buyer" ? "bg-[#1E633E] text-white" : "bg-white text-gray-400 group-hover:text-gray-600"
+            }`}>
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </div>
+            <span className="font-bold text-sm">Customer / Buyer</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleAccountTypeSelect("Merchant")}
+            className={`p-4 rounded-2xl border-2 transition-all flex flex-col items-center gap-2 group ${
+              formData.account_type === "Merchant" 
+                ? "border-[#1E633E] bg-[#1E633E]/5 text-[#1E633E]" 
+                : "border-gray-100 bg-gray-50 text-gray-400 hover:border-gray-200"
+            }`}
+          >
+            <div className={`p-2 rounded-xl transition-all ${
+              formData.account_type === "Merchant" ? "bg-[#1E633E] text-white" : "bg-white text-gray-400 group-hover:text-gray-600"
+            }`}>
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <span className="font-bold text-sm">Business / Merchant</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="h-px bg-zinc-100 w-full my-8!" />
 
       {/* Country Selection */}
       <div className="space-y-1.5">

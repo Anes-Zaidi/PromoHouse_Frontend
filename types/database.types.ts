@@ -216,6 +216,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          account_type: Database["public"]["Enums"]["account_type"]
           address: string | null
           avatar_url: string | null
           commune_id: number | null
@@ -230,6 +231,7 @@ export type Database = {
           wilaya_id: number | null
         }
         Insert: {
+          account_type?: Database["public"]["Enums"]["account_type"]
           address?: string | null
           avatar_url?: string | null
           commune_id?: number | null
@@ -244,6 +246,7 @@ export type Database = {
           wilaya_id?: number | null
         }
         Update: {
+          account_type?: Database["public"]["Enums"]["account_type"]
           address?: string | null
           avatar_url?: string | null
           commune_id?: number | null
@@ -318,6 +321,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      account_type: "Merchant" | "Buyer" | "Admin"
       category:
         | "restaurant"
         | "cafe"
@@ -464,6 +468,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      account_type: ["Merchant", "Buyer", "Admin"],
       category: [
         "restaurant",
         "cafe",

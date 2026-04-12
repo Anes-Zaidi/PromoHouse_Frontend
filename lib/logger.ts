@@ -21,16 +21,16 @@ class LoggerService {
           warn: "color: #f59e0b; font-weight: bold;", // Yellow
           error: "color: #ef4444; font-weight: bold;", // Red
         };
-        const consoleMethod = level === "debug" ? "log" : level;
+        const consoleMethod = (level === "debug" ? "log" : level) as keyof typeof console;
         if (data !== undefined) {
-          console[consoleMethod](
+          (console[consoleMethod] as any)(
             `%c[${level.toUpperCase()}]%c ${message}`,
             styles[level],
             "color: inherit;",
             data
           );
         } else {
-          console[consoleMethod](
+          (console[consoleMethod] as any)(
             `%c[${level.toUpperCase()}]%c ${message}`,
             styles[level],
             "color: inherit;"
@@ -46,14 +46,11 @@ class LoggerService {
         };
         const reset = "\x1b[0m";
         const formattedMessage = this.formatMessage(level, message);
-        const consoleMethod = level === "debug" ? "log" : level;
+        const consoleMethod = (level === "debug" ? "log" : level) as keyof typeof console;
         if (data !== undefined) {
-          console[consoleMethod](
-            `${colors[level]}${formattedMessage}${reset}`,
-            data
-          );
+          (console[consoleMethod] as any)(`${colors[level]}${formattedMessage}${reset}`, data);
         } else {
-          console[consoleMethod](`${colors[level]}${formattedMessage}${reset}`);
+          (console[consoleMethod] as any)(`${colors[level]}${formattedMessage}${reset}`);
         }
       }
     } else {

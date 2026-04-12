@@ -17,6 +17,35 @@ app/
 │   └── page.tsx                 # Strict composition layer (minimum logic)
 ```
 
+## Sections Folder Organization
+
+For standalone homepage or dashboard sections, use a folder-level architecture that mirrors route structure and keeps visuals, interactions, and section-specific logic together.
+
+```text
+sections/
+├── Hero/
+│   ├── components/            # Visual building blocks for the section
+│   │   ├── HeroPromoBadge.tsx
+│   │   ├── HeroActions.tsx
+│   │   ├── HeroStats.tsx
+│   │   └── HeroVisual.tsx
+│   ├── utils/                 # Section-specific data and helpers
+│   │   └── heroData.ts
+│   └── index.tsx              # Section composition layer
+├── CartSection/
+│   ├── components/
+│   │   └── CartGrid.tsx
+│   ├── utils/
+│   │   └── cartData.ts
+│   └── index.tsx
+└── ...
+```
+
+This keeps each section modular:
+- `components/` contains the reusable pieces used only by that section.
+- `utils/` holds data arrays, formatting helpers, and section-specific logic.
+- `index.tsx` stays as the section composition layer, not the implementation detail container.
+
 ## Core Principles
 
 ### 1. Logicless Pages (`page.tsx`)

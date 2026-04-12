@@ -1,4 +1,4 @@
-"use client"; // Obligatoire car tu utilises Framer Motion (animations côté client)
+"use client";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
